@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import Aux from '../../hoc/Aux';
+import Aux from '../../hoc/Aux_hoc/Aux_hoc';
 import Button from '../../component/UI/Button/Button';
 
 class Summary extends Component {
