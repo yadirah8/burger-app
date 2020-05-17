@@ -26,5 +26,6 @@
 }
 
 .Button:disabled {
-    color:rgba(204, 204, 204, 0.822) 
+    color:rgba(204, 204, 204, 0.822) ;
+    cursor: not-allowed;
 }

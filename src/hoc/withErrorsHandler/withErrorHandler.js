@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import Modal from '../../component/UI/Modal/Modal';
-import Aux from '../../../hoc/Aux_hoc/Aux_hoc';
+import Aux from '../../hoc/Aux_hoc/Aux_hoc';
 
 
 const withErrorHandler = (WrapperComponent, axios) => {
@@ -10,22 +10,22 @@ const withErrorHandler = (WrapperComponent, axios) => {
                 message: 'Network Error'
             }
             UNSAFE_componentWillMount (){
-                this.reqInter = axios.interceptors.request.use(req => {
+                axios.interceptors.request.use(req => {
                     this.setState({error: null });
                     return req;
                 })
-                this.resInter = axios.interceptors.response.use(res => res,
+                 axios.interceptors.response.use(res => res,
                      error => {
                     this.setState({error:error});
                 })
             }
 
-            // componentWillUnmount() {
-            //     axios.interceptors.request.eject(this.reqInter);
-            //     axios.interceptors.request.eject(this.resInter);
-            // }
+            //  componentWillUnmount() {
+            //      axios.interceptors.request.eject(this.reqInter);
+            //      axios.interceptors.request.eject(this.resInter);
+            //  }
 
-            errorConfirmedHandler = (props) => {
+            errorConfirmedHandler = () => {
                 this.setState({error: null });
             }
             render(){
