@@ -12,7 +12,7 @@ import builderReducer from './store/reducers/builderReducer';
 import App from './container/App';
 import registerServiceWorker from './registerServiceWorker';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers =  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     builder: builderReducer,

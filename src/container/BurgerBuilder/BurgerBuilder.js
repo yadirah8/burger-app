@@ -13,7 +13,7 @@ import * as actionCreators from '../../store/actions/index';
 import withErrorHandler from '../../hoc/withErrorsHandler/withErrorHandler';
 
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
      hasUnmounted = false;
     state = { 
       purchasing: false  
@@ -22,10 +22,9 @@ class BurgerBuilder extends Component {
 componentDidMount() {
     if (this.hasUnmounted) {
         // check hasUnmounted flag
-        return;
-      }
-    console.log(this.props);
-    this.props.onInitIngredient();    
+        return 
+      } 
+      this.props.onInitIngredient();   
     }
 
 updatePurchaseState (ingredients) {
@@ -67,6 +66,7 @@ updatePurchaseState (ingredients) {
 
         let orderSummary = null;
         let burger = this.props.error ? <p>Ingredients can't be loaded!</p> : <Spinner />
+        console.log(this.props.ing);
 
         if (this.props.ing) {
             burger = (
@@ -76,21 +76,20 @@ updatePurchaseState (ingredients) {
                         disabled = {disabledInfo}
                         ingredientsAdded = {this.props.onIngredientsAdded}
                         ingredientsRemoved = {this.props.onIngredientsRemoved }
-                        price = {this.props.price.toFixed(2)} 
+                        price = {this.props.price} 
                         purchasable = {this.updatePurchaseState(this.props.ing)}
                         clicked = {this.purchaseHandler}
                         isAuth = {this.props.isAuthenticated}
                     />
                 </Aux>
-           );
+            );
            orderSummary = <Summary 
             ingredients = {this.props.ing} 
             clickedCancel = {this.purchaseCancelHandler}
             clickedContinued = {this.purchaseContinuedHandler}
             price = {this.props.price} />;
-        }
+            }
     
-
         return (
             <Aux>
             

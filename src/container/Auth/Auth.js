@@ -9,6 +9,7 @@ import Spinner from '../../component/UI/Spinner/Spinner';
 import * as actionCreators from '../../store/actions/index';
 import withErrorHandler from '../../hoc/withErrorsHandler/withErrorHandler';
 import axios from '../../axios-orders';
+import {checkValidity} from '../../shared/utility';
 
  class Auth extends Component{
  
@@ -52,37 +53,13 @@ import axios from '../../axios-orders';
         }
     }
 
-
-    checkValidity(value,rules) {
-        let isValid = true;
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-        if (rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid;
-        }
-        if (rules.maxLength) {
-            isValid = value.length <= rules.maxLength && isValid;
-        }
-        if (rules.isEmail) {
-            const pattern = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-            isValid = isValid && pattern.test(value);
-        }
-        if (rules.isNumeric){
-            const pattern = /^\d+$/;
-            isValid = isValid && pattern.test(value);
-        }
-        
-        return isValid;
-    }
-
     inputChangedHandler = (event, controlName) => {
         const updatedControls = {
             ...this.state.controls,
             [controlName]: {
                 ...this.state.controls[controlName],
                 value: event.target.value,
-                valid: this.checkValidity(event.target.value,this.state.controls[controlName].validation),
+                valid: checkValidity(event.target.value,this.state.controls[controlName].validation),
                 touched: true
             }
         };

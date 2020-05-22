@@ -3,9 +3,7 @@ import Aux from '../../hoc/Aux_hoc/Aux_hoc';
 import Button from '../../component/UI/Button/Button';
 
 class Summary extends Component {
-    UNSAFE_componentWillUpdate() {
-        console.log('[Summary] WillUpdate');
-    }
+    
     render(){
         const ingredientSummary = Object.keys(this.props.ingredients)
         .map(igKey => {
